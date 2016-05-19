@@ -23,7 +23,7 @@
 					<?php dazzling_footer_links(); ?>
 				</nav>
 				<div class="copyright col-md-6">
-					<?php echo "Copy right by ThangTGM" ?>
+					<?php echo "Design by ThangTGM" ?>
 				</div>
 			</div><!-- .site-info -->
 			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->

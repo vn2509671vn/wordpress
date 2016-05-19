@@ -53,11 +53,11 @@
 				<?php dazzling_header_menu(); ?>
 		</div>
 	</nav><!-- .site-navigation -->
-        
-        <div id="content" class="site-content container">
 
-            <div class="container main-content-area"><?php
+    <div id="content" class="site-content container">
 
+        <div class="container main-content-area">
+        	<?php
                 global $post;
                 if( get_post_meta($post->ID, 'site_layout', true) ){
                         $layout_class = get_post_meta($post->ID, 'site_layout', true);
@@ -69,4 +69,4 @@
                         $layout_class = of_get_option( 'site_layout' );
                 }
                 ?>
-                <div class="row <?php echo $layout_class; ?>">
+            <div class="row <?php echo $layout_class; ?>">

@@ -161,7 +161,6 @@ add_action( 'widgets_init', 'dazzling_widgets_init' );
 include(get_template_directory() . "/inc/widgets/widget-popular-posts.php");
 include(get_template_directory() . "/inc/widgets/widget-social.php");
 
-
 /**
  * Enqueue scripts and styles.
  */
@@ -326,3 +325,23 @@ function of_get_option( $name, $default = false ) {
   return $default;
 }
 endif;
+
+/*Add new menu*/
+add_filter( 'wp_nav_menu_items', 'my_custom_menu_item');
+require_once(ABSPATH . 'wp-admin/includes/file.php');
+function my_custom_menu_item($items)
+{
+    if(is_user_logged_in())
+    {
+        $user=wp_get_current_user();
+        $name=$user->display_name; // or user_login , user_firstname, user_lastname
+        $path = get_permalink(get_page_by_path("logout"));
+        $items .= '<li class="menu-item menu-item-type-post_type menu-item-object-page dropdown"><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp'.$name.' <span class="caret"></span></a>';
+        $items .= '<ul class="dropdown-menu">';
+        $items .= '<li><a href="' . $path. '">Đăng xuất</a></li>';
+        $items .= '<li><a href="#">Thông tin tài khoản</a></li>';
+        $items .= '</ul>';
+        $items .= '</li>';
+    }
+    return $items;
+}

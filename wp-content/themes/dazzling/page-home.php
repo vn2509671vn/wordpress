@@ -4,7 +4,7 @@
  * @package dazzling
  */
 
-get_header(); ?>
+get_header();?>
 	<div class="top-section">
 		<?php echo do_shortcode("[huge_it_slider id='1']"); ?>
         </div>
@@ -17,24 +17,38 @@ get_header(); ?>
 				foreach ($categories as $cat) { 
 			?>
 				<div class = "col-md-4">
-					<a href="<?php echo get_category_link($cat->term_id); ?>" class="thumbnail">
+<!-- 					<a href="<?php echo get_category_link($cat->term_id); ?>" class="thumbnail">
     					<img src="<?php echo z_taxonomy_image_url($cat->term_id); ?>" class="img-circle" style="width:150px;height:150px"/>
-    					<p class="text-center"><?php echo $cat->cat_name; ?></p>
-					</a>
+    					<p class="text-center"></p>
+					</a> -->
+					<div class="ih-item circle effect2 left_to_right">
+						<a href="<?php echo get_category_link($cat->term_id); ?>">
+        					<div class="img"><img src="<?php echo z_taxonomy_image_url($cat->term_id); ?>" alt="img"></div>
+        					<div class="info">
+		          				<h3><?php echo $cat->cat_name; ?></h3>
+		          				<p><?php echo $cat->description; ?></p>
+        					</div>
+        				</a>
+        			</div>
 				</div>
 			<?php } ?>
 			</div>
 			<div class="col-md-12">
 				<h3 class="text-center">NHỮNG BÀI ĐĂNG MỚI NHẤT</h3>
-				<ul>
-<?php
-	$args = array( 'numberposts' => '5' );
-	$recent_posts = wp_get_recent_posts( $args );
-	foreach( $recent_posts as $recent ){
-		echo '<li><a href="' . get_permalink($recent["ID"]) . '">' .   $recent["post_title"]. $recent["post_content"] . '</a> </li> ';
-	}
-?>
-</ul>
+				
+					<?php
+						$args = array( 'numberposts' => '5' );
+						$recent_posts = wp_get_recent_posts( $args );
+						foreach( $recent_posts as $recent ){ 
+						?>
+						<div class = "col-md-12 border-bottom">
+							<a href="<?php echo get_permalink($recent["ID"]); ?>">
+								<div class="col-md-2" id = "post_date"><?php echo date_format(date_create($recent["post_date"]),"d/m/Y");?></div>
+								<div class="col-md-10" id = "post_title"><?php echo $recent["post_title"];?></div>
+							</a>
+						</div>
+					<?php }?>
+				
 			</div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
