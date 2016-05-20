@@ -34,4 +34,10 @@
 <?php wp_footer(); ?>
 
 </body>
+<script type="text/javascript">
+	jQuery(function($){
+		var nMarginTop = <?php echo checkLogin();?>;
+		$("#content").css("margin-top",nMarginTop);
+	})
+</script>
 </html>

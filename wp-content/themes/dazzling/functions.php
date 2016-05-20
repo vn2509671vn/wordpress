@@ -331,6 +331,7 @@ add_filter( 'wp_nav_menu_items', 'my_custom_menu_item');
 require_once(ABSPATH . 'wp-admin/includes/file.php');
 function my_custom_menu_item($items)
 {
+   
     if(is_user_logged_in())
     {
         $user=wp_get_current_user();
@@ -344,4 +345,14 @@ function my_custom_menu_item($items)
         $items .= '</li>';
     }
     return $items;
+}
+
+function checkLogin(){
+  if(is_user_logged_in()){
+    $margin_top = 40;
+  }
+  else{
+    $margin_top = 72;
+  }
+  return $margin_top;
 }
